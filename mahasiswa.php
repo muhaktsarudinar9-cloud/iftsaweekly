@@ -12,21 +12,21 @@
         <table border="1" cellspacing="0" cellpadding="10">
             <tr>
                  <td> 
-                    <a href="index.html">Home</a>
+                    <a href="index.php">Home</a>
                  </td>
                  <td>
-                    <a href="Profile.html">Profile</a>
+                    <a href="Profile.php">Profile</a>
                  </td>
                  <td> 
-                    <a href="content.html">Contact</a>
+                    <a href="content.php">Contact</a>
                  </td>
                  <td>
-                    <a href="mahasiswa.html">Data Mahasiswa</a>
+                    <a href="mahasiswa.php">Data Mahasiswa</a>
                  </td>
             </tr>
         </table>
     <h3>Data Mahasiswa</h3>
-    <a href="inputdata.html">
+    <a href="inputdata.php">
         <button>Tambah Data</button>
     </a>
    <br>
@@ -35,37 +35,42 @@
 
     <table border="1" cellpading="10">
         <tr>
-            <td rowspan="2">Nomor</td>
-            <td rowspan="2">Nama</td>
-            <td colspan="3" align="center">Nilai</td>
-            <th rowspan="2">Foto</th>
+            <th>No</th>
+            <th>Nama</th>
+            <th>NIM</th>
+            <th>Jurusan</th>
+            <th>Email</th>
+            <th>No. Hp</th>
+            <th>Foto</th>
+            <th>Aksi</th>
 
-            <!-- <td>Baris 1, Kolom2</td>-->
-        </tr>
-        <tr>
-            <th>TUGAS</th>
-            <th>UTS</th>
-            <th>UAS</th>
+
         </tr>
         <tr>
             <td align="center">1</td>
-            <td>panca Jr</td>
-            <td align="center">80</td>
-            <td align="center">76</td>
-            <td align="center">96</td>
+            <td>Muhammad Aktsa</td>
+            <td align="center">1318242009</td>
+            <td align="center">INFORMATIKA</td>
+            <td align="center">tsa@gmail.com</td>
+             <td align="center">085131824209</td>
              <td><img src="assets/images/jepri.jpg" width="70px" height="90px"/></td>
-
+            <td>
+                 <a href="ubahdata.php"><button>edit</button></a> | <a href="hapusdata.php"><button>hapus</button></a>
+            <td>
         </tr>
          <tr>
             <td align="center">2</td>
-            <td>udin ngab</td>
-            <td align="center">85</td>
-            <td align="center">89</td>
-            <td align="center">85</td>
-               <td><img src="assets/images/udin.png" width="70px" height="90px"/></td>
-
-          
+            <td>Anan Maulana</td>
+            <td align="center">1318242011</td>
+            <td align="center">INFORMATIKA</td>
+            <td align="center">ana@gmail.com</td>
+            <td align="center">085428354673</td>
+            <td><img src="assets/images/udin.png" width="70px" height="90px"/></td>
+            <td>
+                 <a href="ubahdata.php"><button>edit</button></a> | <a href="hapusdata.php"><button>hapus</button></a>
+            <td>
         </tr>
+
 
     </table>
 </body>
@@ -81,7 +86,7 @@
         </tr>
         <tr>
             <td align = "center">2,1</td>
-            <th rowspan="2" colspan="" align ="center"><h1>?</h1></th>
+            <th  colspan="" align ="center"><h1>?</h1></th>
             <td align = "center">2,4</td>
         </tr>
         <tr>
