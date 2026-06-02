@@ -1,3 +1,27 @@
+<?php
+echo "aktsa";
+
+$koneksi= mysqli_connect("localhost","root","","tsaweekly");
+
+if(!$koneksi){
+    echo mysqli_connect_error($koneksi);
+}
+    else{
+        echo "koneksi berhasil !!!";
+    }
+
+$query = "SELECT * FROM mahasiswa";
+
+$result = mysqli_query($koneksi, $query); /// lemari
+
+/// ambil data (fetch) mahasiswa dari lemari
+
+$mahasiswa = mysqli_fetch_row($result);
+
+var_dump($mahasiswa);
+
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -33,22 +57,23 @@
    <br>
   
 
-    <table border="1" cellpading="10">
+ <table border="1" cellpading="10">
         <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>NIM</th>
-            <th>Jurusan</th>
-            <th>Email</th>
-            <th>No. Hp</th>
-            <th>Foto</th>
-            <th>Aksi</th>
+            <td rowspan="2">Nomor</td>
+            <td rowspan="2">Nama</td>
+            <td colspan="3" align="center">Nilai</td>
+            <th rowspan="2">Foto</th>
 
-
+            <!-- <td>Baris 1, Kolom2</td>-->
+        </tr>
+        <tr>
+            <th>TUGAS</th>
+            <th>UTS</th>
+            <th>UAS</th>
         </tr>
         <tr>
             <td align="center">1</td>
-            <td>Muhammad Aktsa</td>
+            <td>Muhammad udin</td>
             <td align="center">1318242009</td>
             <td align="center">INFORMATIKA</td>
             <td align="center">tsa@gmail.com</td>
@@ -60,7 +85,7 @@
         </tr>
          <tr>
             <td align="center">2</td>
-            <td>Anan Maulana</td>
+            <td>Maulana</td>
             <td align="center">1318242011</td>
             <td align="center">INFORMATIKA</td>
             <td align="center">ana@gmail.com</td>
