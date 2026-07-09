@@ -1,19 +1,28 @@
 <?php
 require 'fungsi.php';
 
+// 1. Ambil ID dari URL
 $id = $_GET["id"];
 
+// 2. Ambil data lama mahasiswa berdasarkan ID
 $query = "SELECT * FROM mahasiswa WHERE id = $id";
 $mhs = tampildata($query)[0];
 
-if (ubahdata($_POST) > 0) {
-    echo "<script> 
-    window.location.href='mahasiswa.php';
-    </script>";
-} else {
-    echo "<script> 
-    window.location.href='mahasiswa.php';
-    </script>";
+// 3. PERBAIKAN: Fungsi ubah data hanya akan berjalan JIKA tombol submit ("kirim") sudah diklik
+if (isset($_POST["kirim"])) {
+    
+    if (ubahdata($_POST) > 0) {
+        echo "<script> 
+        alert('Data berhasil diubah!');
+        window.location.href='mahasiswa.php';
+        </script>";
+    } else {
+        echo "<script> 
+        alert('Tidak ada data yang diubah atau data gagal diubah!');
+        window.location.href='mahasiswa.php';
+        </script>";
+    }
+    
 }
 ?>
 <!DOCTYPE html>

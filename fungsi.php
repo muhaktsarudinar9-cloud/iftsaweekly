@@ -1,9 +1,12 @@
 <?php
+session_start(); // Wajib ditambahkan di baris pertama agar session login aktif!
+
 $koneksi = mysqli_connect("localhost", "root", "", "tsaweekly");
 
 if (!$koneksi) {
     die("Koneksi Database Gagal: " . mysqli_connect_error());
 }
+
 function tampildata($query)
 {
     global $koneksi;
@@ -16,8 +19,6 @@ function tampildata($query)
     return $rows;
 }
 
-
-// 3. FUNGSI TAMBAH DATA (CREATE)
 function tambahdata($data)
 {
     global $koneksi;
@@ -27,7 +28,17 @@ function tambahdata($data)
     $jurusan = mysqli_real_escape_string($koneksi, $data["jurusan"]);
     $email = mysqli_real_escape_string($koneksi, $data["email"]);
     $no_hp = mysqli_real_escape_string($koneksi, $data["no_hp"]);
-    $foto = ""; 
+    
+    // Ambil data foto dari laptop
+    $namaFile = $_FILES['foto']['name'];
+    $tmpName = $_FILES['foto']['tmp_name'];
+
+    if ($namaFile != "") {
+        $foto = $namaFile;
+        move_uploaded_file($tmpName, 'assets/images/' . $namaFile);
+    } else {
+        $foto = "";
+    }
 
     $query = "INSERT INTO mahasiswa (nama, nim, jurusan, email, no_hp, foto)
               VALUES ('$nama', '$nim', '$jurusan', '$email', '$no_hp', '$foto')";
@@ -37,8 +48,6 @@ function tambahdata($data)
     return mysqli_affected_rows($koneksi);
 }
 
-
-// 4. FUNGSI UBAH DATA (UPDATE) -> "Ini fungsi baru yang ditambahkan di bawah"
 function ubahdata($data)
 {
     global $koneksi;
@@ -49,7 +58,21 @@ function ubahdata($data)
     $jurusan = mysqli_real_escape_string($koneksi, $data["jurusan"]);
     $email = mysqli_real_escape_string($koneksi, $data["email"]);
     $no_hp = mysqli_real_escape_string($koneksi, $data["no_hp"]);
-    $foto = ""; 
+    
+    $namaFile = $_FILES['foto']['name'];
+    $tmpName = $_FILES['foto']['tmp_name'];
+
+    // Cek apakah user memilih foto baru
+    if ($namaFile != "") {
+        $foto = $namaFile;
+
+        move_uploaded_file($tmpName, 'assets/images/' . $namaFile);
+    } else {
+
+        $query_lama = mysqli_query($koneksi, "SELECT foto FROM mahasiswa WHERE id = $id");
+        $mhs_lama = mysqli_fetch_assoc($query_lama);
+        $foto = $mhs_lama['foto'];
+    }
 
     $query = "UPDATE mahasiswa SET 
                 nama = '$nama',
@@ -61,7 +84,6 @@ function ubahdata($data)
               WHERE id = $id";
 
     mysqli_query($koneksi, $query);
-
-    return mysqli_affected_rows($koneksi);
+    return mysqli_affected_rows($koneksi) >= 0; 
 }
 ?>
